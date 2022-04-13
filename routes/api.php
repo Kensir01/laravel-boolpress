@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/posts', 'Api\PostController@index');
-
+// risponde a /api/posts/parteParametrica
 Route::get('posts/{slug', 'Api\PostController@show');

@@ -5,8 +5,10 @@ Vue.use(VueRouter);
 
 import Home from './pages/Home';
 import About from './pages/About';
-import Posts from './pages/Posts';
+import Blog from './pages/Posts';
 import SinglePost from './pages/SinglePost';
+import NotFound from './pages/NotFound';
+
 
 
 const router = new VueRouter ({
@@ -23,14 +25,19 @@ const router = new VueRouter ({
             component: About
         },
         {
-            path:'/posts',
-            name:'posts',
-            component: Posts
+            path:'/blog',
+            name:'blog',
+            component: Blog
         },
         {
-            path:'/posts/:slug',
+            path:'/blog/:slug',
             name:'single-post',
             component: SinglePost
+        },
+        {
+            path:'/*',
+            name:'not-found',
+            component: NotFound
         },
     ]
 });
