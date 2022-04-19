@@ -1,41 +1,39 @@
 <template>
-  <div>
-      <div class="container">
+  <!-- <div>{{$$route.params.slug}}</div> -->
 
-        <div class="row">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+          <div v-if="post">
 
-          <div class="col-12">
+            <!-- se post definito mi metti -->
+            <h1>{{post.title}}</h1>
 
-            <div v-if="post">
+            <img class="img-fluid mt-3 mb-3" :src="post.cover" :alt="post.title">
 
-              <h1>{{post.title}}</h1>
-              <p>{{post.content}}</p>
-              <h3>Categoria:{{post.category.name}}</h3>
+            <h3 v-if="post.category">Categoria: {{post.category.name}}</h3>
 
-              <p>Tags:</p>
+            <p>{{post.content}}</p>
 
-              <ul>
-
-                <li v-for="tag in post.tags" :key="tag.id">
-                  {{tag.name}}
-                </li>
-
-              </ul>
-
-            </div>
-
+            
+              <span class="badge ms_color" v-for="tag in post.tags" :key="tag.id">
+                {{tag.name}}
+              </span>
+           
+            
           </div>
-
-        </div>
-
       </div>
-      
+    </div>
   </div>
+
 </template>
 
 <script>
 export default {
-    name:'SinglePost',
+    name: 'SinglePost',
+    // al metodo di creazione dell'elemento vado a fare chiamata axios che richiama funzione creata 
+    // vorrei che quando apro questo componente, sia fatta richiesta axios - api di laravel
+    // che mi ritorni tutte le info in merito ad un post specifico, identificato dal suo slug
 
     data() {
       return {
@@ -43,23 +41,36 @@ export default {
       }
     },
 
-  mounted() {
+    // select * from posts where slug = :slug
+    mounted() {
 
-    const slug = this.$route.params.slug;
+      const slug = this.$route.params.slug;
 
-    axios.get('/api/posts/' + slug).then(response => {
+      axios.get('/api/posts/' + slug).then(response => {
 
-      if (response.data.succes == false) {
-        this.$rooter.push({name: 'not-found'})
-      } else {
-        this.post = response.data.result;
-      }
+        // vedo ciò che il server mi risponde 
+        // console.log(response);
 
-    });
-  }
+        // condizioni relative alla ricerca del mio post attraverso uri
+        if (response.data.success == false) {
+          this.$router.push({name: 'not-found'})
+        } else {
+          this.post = response.data.result
+        }
+
+      });
+    }
 }
 </script>
 
 <style>
+  ul {
+    list-style: none;
+  }
 
+  .ms_color {
+    background-color: #0073aa;
+    margin-right: 10px;
+    color: #fff;
+  }
 </style>

@@ -1,13 +1,20 @@
 <template>
-    <h1>Benvenuto nel nostro blog!</h1>
+<div class="container text-center mt-5">
+  <h1>
+      Benvenuto in Boolpress!
+  </h1>
+</div>
+  
 </template>
 
 <script>
 export default {
-    name: 'Home'
+    nme: 'Home'
 }
 </script>
 
 <style>
-
+  h1 {
+    font-size: 50px;
+  }
 </style>

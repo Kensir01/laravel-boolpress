@@ -1,15 +1,30 @@
 <template>
+
   <div>
-    <h1>Per contattarci usa i nostri recapiti:</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates reprehenderit distinctio sunt nulla architecto? Animi aut voluptatum molestiae, consectetur, sapiente saepe rerum ad magni provident voluptas qui nostrum numquam! Alias?</p>
+
+    <div class="container-title text-center">
+      <h1>Contattaci</h1>
+      <p>Parliamo del vostro sito Web o di un vostro progetto. Inviateci un messaggio e vi contatteremo entro un giorno lavorativo.</p>
+    </div>
+
+    <div class="container mt-5">
+      
+    </div>
+
   </div>
+  
 </template>
 
 <script>
 export default {
-  name: "Contact",
-};
+    nme: 'Contact'
+}
 </script>
 
 <style>
+  .container-title {
+    background-color: #0073aa;
+    color: #fff;
+    padding: 30px;
+  }
 </style>

@@ -8,8 +8,21 @@
 
             <h1>Crea un nuovo post</h1>
 
-            <form method="POST" action="{{route('admin.posts.store')}}">
+            {{-- aggiungo enctype per funazionamento upload file --}}
+            <form method="POST" action="{{route('admin.posts.store')}}" enctype="multipart/form-data">
                 @csrf
+
+
+
+
+                {{-- per invio file - collegamento per upload --}}
+                <div class="form-group">
+                    <label for="image">Immagine di copertina</label>
+                    <input class="form-control" type="file" name="image" id="image" style="padding:10px; height: 50px;">
+                </div>
+
+
+
 
                 <div class="form-group">
                     <label for="category_id">Categoria</label>
@@ -38,7 +51,7 @@
                 </div>
                 @endforeach
                 
-                <button type="submit" class="btn btn-primary">Salva</button>
+                <button type="submit" class="btn" style="background-color: #0073aa; color: #fff;">Salva</button>
               </form>
 
         </div>
